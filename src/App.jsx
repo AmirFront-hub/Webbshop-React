@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import CartPage from './pages/CartPage';
 import AdminPage from './pages/AdminPage';
 import LoginPage from './pages/LoginPage';
-import Header from './components/Header';
+import Header from './components/Header.jsx';
 import Footer from './components/Footer'; // Add this import
 
 function App() {

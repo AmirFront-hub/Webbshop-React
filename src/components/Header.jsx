@@ -9,8 +9,8 @@ const Header = () => {
             <h1>Webbshop</h1>
             <nav>
                 <Link to="/">Home</Link>
-                <Link to="/products">Products</Link>
-                <Link to="/contact">Contact</Link>
+                <Link to="/cart">Cart</Link>
+                <Link to="/admin">Admin</Link>
             </nav>
         </header>
     );
