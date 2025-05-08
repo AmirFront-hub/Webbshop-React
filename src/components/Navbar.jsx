@@ -24,21 +24,22 @@ const Navbar = () => {
             {/* Logo */}
             <img src={logo} alt="Logo" className='logo' />
 
+            {/* Dropdown Menu */}
+            <div className={`nav-menu ${isVisible ? 'active' : ''}`}>
+                <NavLink to="/" className="nav-link">TV-Spel</NavLink>
+                <NavLink to="/" className="nav-link">Leksaker</NavLink>
+                <NavLink to="/" className="nav-link">Dockor</NavLink>
+                <NavLink to="/" className="nav-link">Pyssel</NavLink>
+            </div>
+
             {/* Cart Button */}
             <Link to="/cart" className='cart-btn'>
                 <img src={cartlogo} alt="cart-btn" className='cart-icon' />
                 <p className='varukorg'>Varukorg</p>
-                <span className='cart-counter'>3</span> {/* Replace '3' with your actual cart count */}
+                <span className='cart-counter'>0</span>
             </Link>
         </div>
         
-        {/* Dropdown Menu */}
-        <div className={`nav-menu ${isVisible ? 'active' : ''}`}>
-            <NavLink to="/" className="nav-link">TV-Spel</NavLink>
-            <NavLink to="/" className="nav-link">Leksaker</NavLink>
-            <NavLink to="/" className="nav-link">Dockor</NavLink>
-            <NavLink to="/" className="nav-link">Pyssel</NavLink>
-        </div>
     </div>
   )
 }
