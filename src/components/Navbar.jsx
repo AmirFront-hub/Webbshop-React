@@ -1,30 +1,43 @@
-import React, { Fragment } from 'react'
-import { NavLink } from 'react-router-dom';
-
+import React, { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/Logo.png';
 import cartlogo from "../assets/Cart.png";
 import NavIcon from "../assets/Nav-icon.png";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
   return (
     <div className='navbar'>
         <div className='Row-1'>
-            <img src={logo} alt="Logo" className='logo' />
-            <div className='cart-btn'>
-                <img src={cartlogo} alt="cart-btn" className='cart-icon' />
-                <p>Varukorg</p>
+            {/* Nav Icon */}
+            <div className='Navbar-links'>
+                <img 
+                    onClick={() => setIsVisible(!isVisible)} 
+                    src={NavIcon} 
+                    alt="Menu" 
+                    className='nav-btn'
+                />
             </div>
+
+            {/* Logo */}
+            <img src={logo} alt="Logo" className='logo' />
+
+            {/* Cart Button */}
+            <Link to="/cart" className='cart-btn'>
+                <img src={cartlogo} alt="cart-btn" className='cart-icon' />
+                <p className='varukorg'>Varukorg</p>
+                <span className='cart-counter'>3</span> {/* Replace '3' with your actual cart count */}
+            </Link>
         </div>
         
-        <div className='Row-2'>
-            <ul className='Navbar-links'>
-                <img src={NavIcon} alt="" />
-                <NavLink to="/" className="nav-link">TV-Spel</NavLink>
-                <NavLink to="/" className="nav-link">Leksaker</NavLink>
-                <NavLink to="/" className="nav-link">Dockor</NavLink>
-                <NavLink to="/" className="nav-link">Pyssel</NavLink>
-            </ul>
+        {/* Dropdown Menu */}
+        <div className={`nav-menu ${isVisible ? 'active' : ''}`}>
+            <NavLink to="/" className="nav-link">TV-Spel</NavLink>
+            <NavLink to="/" className="nav-link">Leksaker</NavLink>
+            <NavLink to="/" className="nav-link">Dockor</NavLink>
+            <NavLink to="/" className="nav-link">Pyssel</NavLink>
         </div>
     </div>
   )
