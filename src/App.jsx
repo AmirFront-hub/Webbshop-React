@@ -1,23 +1,33 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import CartPage from './pages/CartPage';
-import AdminPage from './pages/AdminPage';
-import LoginPage from './pages/LoginPage';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer'; // Add this import
+import React from 'react'
+import {Routes, Route} from 'react-router-dom'
+import Home from './pages/Home'
+import Collection from './pages/Collection'
+import Cart from './pages/Cart'
+import Product from './pages/Product'
+import PlaceOrder from './pages/PlaceOrder'
+import Orders from './pages/Orders'
+import Navbar from './components/Navbar'
+import './App.css'
 
-function App() {
+const App = () => {
   return (
-    <HashRouter>
-      <Header />
+
+    <div className='app'>
+
+      <Navbar/>
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/login" element={<LoginPage />} />
+          <Route path ="/" element={<Home/>} />
+          <Route path ="/collection" element={<Collection/>} />
+          <Route path ="/cart" element={<Cart/>} />
+          <Route path ="/product/:productId" element={<Product/>} />
+          <Route path='/placeorder' element={<PlaceOrder/>} />
+          <Route path='/orders' element={<Orders/>} />
       </Routes>
-      <Footer />
-    </HashRouter>
-  );
+
+    </div>
+
+  )
 }
-export default App;
+
+export default App

@@ -1,0 +1,36 @@
+.logo {
+ 
+}
+
+
+.Row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+
+
+.Navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.cart-btn {
+    background-color: #99F99C;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    width: 140px;
+    height: 40px;
+}
+
+.cart-icon {
+    width: 35px;
+    height: auto;
+}
