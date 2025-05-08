@@ -119,13 +119,25 @@
     color: inherit;
 }
 
-/* Fix media query for mobile view */
-@media screen and (max-width: 740px) {
+
+
+@media screen and (max-width: 322px) {
     .Row-1 {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 25px;
+        padding: 20px;
+    }
+
+}
+
+/* Fix media query for mobile view */
+@media screen and (max-width: 600px) {
+    .Row-1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
         width: 100%;
     }
 
@@ -144,7 +156,7 @@
     }
 
     .logo {
-        height: 40px;
+        height: 30px;
         width: auto;
     }
 
