@@ -26,8 +26,6 @@ const App = () => {
           <Route path='/orders' element={<Orders/>} />
       </Routes>
 
-      <Home/>
-
       <Footer/>
 
     </div>
