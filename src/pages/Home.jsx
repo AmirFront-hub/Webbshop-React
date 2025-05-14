@@ -7,8 +7,11 @@ import dollIcon from "../assets/docka-icon.png";
 import toyIcon from "../assets/leksak-icon.png"
 import puzzleIcon from "../assets/pussel-icon.png";
 import './Home.css'
+import { Link } from 'react-router-dom';
 
 function Home() {
+ 
+
   return (
     <Fragment>
 
@@ -28,20 +31,28 @@ function Home() {
       <div>
         <div className='icon-container'>
           <div>
-            <img src={gameIcon} alt="Game Icon" className='icon' />
-            <p>TV-Spel</p>
+            <Link to="/tvspel">
+              <img src={gameIcon} alt="Game Icon" className='icon' />
+              <p>TV-Spel</p>
+            </Link>
           </div>
           <div>
-            <img src={dollIcon} alt="Doll Icon" className='icon' />
-            <p>Dockor</p>
+            <Link to="/dockor">
+              <img src={dollIcon} alt="Doll Icon" className='icon' />
+              <p>Dockor</p>
+            </Link>
           </div>
           <div>
-            <img src={toyIcon} alt="Toy Icon" className='icon' />
-            <p>Leksaker</p>
+            <Link to="/leksaker">
+              <img src={toyIcon} alt="Toy Icon" className='icon' />
+              <p>Leksaker</p>
+            </Link>
           </div>
           <div>
-            <img src={puzzleIcon} alt="Game Icon" className='icon' />
-            <p>Pyssel</p>
+            <Link to="/pyssel">
+              <img src={puzzleIcon} alt="Game Icon" className='icon' />
+              <p>Pyssel</p>
+            </Link>
           </div>
         </div>
       </div>
@@ -49,10 +60,6 @@ function Home() {
       <div className='smalltext-content'>
         <h2>Brett utbud - låga priser</h2>
       </div>
-
-
-
-      
 
     </Fragment>
   )

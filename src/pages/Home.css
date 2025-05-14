@@ -35,9 +35,20 @@
 }
 
 .icon-container {
+    text-decoration: none;
     display: flex;
     justify-content: center;
     text-align: center;
     gap: 20px;
+}
+
+.icon-container a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.icon-container p {
+    color: inherit;
+    margin-top: 5px;
 }
 
