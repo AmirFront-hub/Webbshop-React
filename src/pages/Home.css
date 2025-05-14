@@ -28,18 +28,55 @@ img {
     gap: 16px;
 }
 
+.smalltext-content {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+
+    h2 {
+        margin: 0;
+    }
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+}
+
 @media screen and (max-width: 740px) {
     .page-column {
         flex-direction: column;
         width: 100%;
+        align-items: center;
     }
     
     .smallPics {
-        flex-direction: row;
+        width: 100%;
+        flex-direction: column;
+        gap: 20px;
     }
-    
+
+    .smallPics img {
+        width: 100%;
+        max-width: 500px;
+    }
+
     .text-content {
+        padding: 0 20px;
         margin: 20px auto;
+    }
+
+    .icon-container {
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+
+    .smalltext-content {
+        margin: 20px 0;
         padding: 0 20px;
     }
 }
