@@ -1,13 +1,13 @@
 footer {
     width: 100vw;
-    background: #222;
+    background: #746f6f;
     margin: 0;
     padding: 0;
 }
 
 .copyright {
     width: 100vw;
-    color: #ccc;
+    color: #000000;
     text-align: center;
     font-size: 0.95rem;
     margin: 0;
@@ -24,7 +24,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    background: #222;
+    background: #746f6f;
     color: #fff;
     padding: 32px 24px 16px 24px;
     flex-wrap: wrap;
