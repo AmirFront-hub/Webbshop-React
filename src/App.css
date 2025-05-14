@@ -9,9 +9,15 @@ html, body, #root {
     flex-direction: column;
 }
 main {
+    font-family: "Alata", sans-serif;
     flex: 1;
 }
 .navbar {
     padding: 0;
     margin: 0;
+    font-family: "Alata", sans-serif;
+}
+
+footer {
+    font-family: "Alata", sans-serif;
 }
