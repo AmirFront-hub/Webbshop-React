@@ -13,20 +13,29 @@ import Footer from './components/Footer'
 const App = () => {
   return (
 
-    <div className='app'>
+    <div className='app-container'>
 
       <Navbar/>
 
-      <Routes>
-          <Route path ="/" element={<Home/>} />
-          <Route path ="/collection" element={<Collection/>} />
-          <Route path ="/cart" element={<Cart/>} />
-          <Route path ="/product/:productId" element={<Product/>} />
-          <Route path='/placeorder' element={<PlaceOrder/>} />
-          <Route path='/orders' element={<Orders/>} />
-      </Routes>
+      <main>
+        <Routes>
+            <Route path ="/" element={<Home/>} />
+            <Route path ="/collection" element={<Collection/>} />
+            <Route path ="/cart" element={<Cart/>} />
+            <Route path ="/product/:productId" element={<Product/>} />
+            <Route path='/placeorder' element={<PlaceOrder/>} />
+            <Route path='/orders' element={<Orders/>} />
+        </Routes>
+      </main>
 
-      <Footer/>
+      <footer>
+        <div className='footer-container'>
+          <Footer/>
+        </div>
+        <div className='copyright'>
+          {/* Copyright information */}
+        </div>
+      </footer>
 
     </div>
 
