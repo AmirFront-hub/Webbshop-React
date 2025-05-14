@@ -46,18 +46,19 @@ html, body {
 }
 
 .varukorg {
-    padding-left: 10px;
+    padding-bottom: 5px;
 }
 
 .cart-icon {
     width: 35px;
     height: auto;
+    padding-right: 5px;
 }
 
 .cart-counter {
     position: absolute;
     top: -0px;
-    right: 79px;
+    right: 82px;
     background-color: #FF0000;
     color: white;
     border-radius: 50%;
