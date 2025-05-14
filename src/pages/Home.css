@@ -19,6 +19,15 @@ img {
     height: auto;
 }
 
+.text-content {
+    text-align: center;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
 @media screen and (max-width: 740px) {
     .page-column {
         flex-direction: column;
@@ -27,5 +36,10 @@ img {
     
     .smallPics {
         flex-direction: row;
+    }
+    
+    .text-content {
+        margin: 20px auto;
+        padding: 0 20px;
     }
 }
