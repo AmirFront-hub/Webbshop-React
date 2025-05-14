@@ -10,20 +10,21 @@
     background: white;
     z-index: 2000;
     display: flex;
-    justify-content: center;  /* Center navbar content */
+    justify-content: center;
     width: 100%;
 }
 
 .Row-1 {
     display: flex;
     align-items: center;
-    max-width: 1200px;  /* Add max-width to contain content */
-    margin: 0 auto;     /* Center the row */
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
     justify-content: space-between;
     gap: 50px;
 }
 
+/* Single cart button declaration */
 .cart-btn {
     background-color: #99F99C;
     border: none;
@@ -34,49 +35,13 @@
     border-radius: 30px;
     width: 140px;
     height: 40px;
-    position: relative; /* Important for counter positioning */
+    position: relative;
     text-decoration: none;
     color: inherit;
-
-    .varukorg {
-        padding-left: 10px;
-    }
-
 }
 
-.Navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding-bottom: 10px;
-
-    .nav-link {
-        color: inherit;
-        text-decoration: none;
-      }
-
-}
-
-  
-
-.cart-btn {
-    background-color: #99F99C;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    width: 140px;
-    height: 40px;
-    position: relative; /* Important for counter positioning */
-    text-decoration: none;
-    color: inherit;
-
-    .varukorg {
-        padding-left: 10px;
-    }
-    
+.varukorg {
+    padding-left: 10px;
 }
 
 .cart-icon {
@@ -84,7 +49,6 @@
     height: auto;
 }
 
-/* Counter styles - Move this before media queries */
 .cart-counter {
     position: absolute;
     top: -0px;
@@ -99,16 +63,17 @@
     align-items: center;
     font-size: 12px;
     font-weight: bold;
-    z-index: 2001; /* Ensure it's above other elements */
+    z-index: 2001;
 }
 
 .nav-btn {
     display: none;
     cursor: pointer;
-    width: 24px; /* Add a specific width */
-    height: 24px; /* Add a specific height */
+    width: 24px;
+    height: 24px;
 }
 
+/* Single nav-menu declaration */
 .nav-menu {
     display: flex;
     gap: 24px;
@@ -119,40 +84,15 @@
     color: inherit;
 }
 
-
-
-@media screen and (max-width: 322px) {
+/* Single mobile media query */
+@media screen and (max-width: 740px) {
     .Row-1 {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-    }
-
-}
-
-/* Fix media query for mobile view */
-@media screen and (max-width: 600px) {
-    .Row-1 {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
+        padding: 10px 20px;
         width: 100%;
-    }
-
-    .Navbar-links {
-        display: flex;
-        align-items: center;
-        margin: 0;
-        padding: 0;
     }
 
     .nav-btn {
         display: block;
-        width: 24px;
-        height: 24px;
-        margin: 0;
     }
 
     .logo {
@@ -163,23 +103,24 @@
     .cart-btn {
         width: auto;
         padding: 5px 10px;
-        height: 40px;
-    }
-
-    .cart-counter {
-        width: 18px;
-        height: 18px;
-        font-size: 10px;
-        top: -2px;
-        right: -3px;
     }
 
     .varukorg {
         display: none;
     }
 
+    .cart-counter {
+        top: -2px;
+        right: -3px;
+    }
+
     .nav-menu {
         display: none;
+    }
+
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
@@ -187,11 +128,7 @@
         background: white;
         padding: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .nav-menu.active {
-        display: flex;
-        flex-direction: column;
+        z-index: 2000;
         gap: 10px;
     }
 }
