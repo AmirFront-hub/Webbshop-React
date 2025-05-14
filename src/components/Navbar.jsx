@@ -21,8 +21,10 @@ const Navbar = () => {
                 />
             </div>
 
-            {/* Logo */}
-            <img src={logo} alt="Logo" className='logo' />
+            {/* Logo with Link */}
+            <Link to="/">
+                <img src={logo} alt="Logo" className='logo' />
+            </Link>
 
             {/* Dropdown Menu */}
             <div className={`nav-menu ${isVisible ? 'active' : ''}`}>
