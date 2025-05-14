@@ -1,0 +1,31 @@
+.page-column {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    width: fit-content;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+.smallPics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 740px) {
+    .page-column {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .smallPics {
+        flex-direction: row;
+    }
+}
