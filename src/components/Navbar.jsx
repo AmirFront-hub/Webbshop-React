@@ -11,37 +11,42 @@ const Navbar = () => {
   return (
     <div className='navbar'>
         <div className='Row-1'>
-            {/* Nav Icon */}
-            <div className='Navbar-links'>
-                <img 
-                    onClick={() => setIsVisible(!isVisible)} 
-                    src={NavIcon} 
-                    alt="Menu" 
-                    className='nav-btn'
-                />
-            </div>
+            {/* Hamburger menu (nav-btn) */}
+            <img
+              onClick={() => setIsVisible(!isVisible)}
+              src={NavIcon}
+              alt="Menu"
+              className="nav-btn"
+            />
 
-            {/* Logo with Link */}
+            {/* Logo */}
             <Link to="/">
-                <img src={logo} alt="Logo" className='logo' />
+                <img src={logo} alt="Logo" className="logo" />
             </Link>
 
-            {/* Dropdown Menu */}
-            <div className={`nav-menu ${isVisible ? 'active' : ''}`}>
+            {/* Desktop menu */}
+            <div className="desktop-menu">
                 <NavLink to="/" className="nav-link">TV-Spel</NavLink>
                 <NavLink to="/" className="nav-link">Leksaker</NavLink>
                 <NavLink to="/" className="nav-link">Dockor</NavLink>
                 <NavLink to="/" className="nav-link">Pyssel</NavLink>
             </div>
 
-            {/* Cart Button */}
-            <Link to="/cart" className='cart-btn'>
+            {/* Cart */}
+            <Link to="/cart" className="cart-btn">
                 <img src={cartlogo} alt="cart-btn" className='cart-icon' />
                 <p className='varukorg'>Varukorg</p>
                 <span className='cart-counter'>0</span>
             </Link>
         </div>
         
+        {/* Mobile menu */}
+        <div className={`mobile-menu${isVisible ? ' active' : ''}`}>
+            <NavLink to="/" className="nav-link">TV-Spel</NavLink>
+            <NavLink to="/" className="nav-link">Leksaker</NavLink>
+            <NavLink to="/" className="nav-link">Dockor</NavLink>
+            <NavLink to="/" className="nav-link">Pyssel</NavLink>
+        </div>
     </div>
   )
 }

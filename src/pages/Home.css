@@ -3,14 +3,67 @@
     flex-direction: row;
     gap: 20px;
     padding: 20px;
-    margin: auto;
-    width: fit-content;
+    max-width: 1200px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    justify-content: center;   /* Center children horizontally */
+    width: auto;               /* Let it shrink to content */
+}
+
+.page-column > * {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.page-column img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media screen and (max-width: 1200px) {
+    .page-column {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .page-column {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .page-column {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        margin-left: 0;   /* Remove centering on mobile */
+        margin-right: 0;  /* Remove centering on mobile */
+        max-width: 100%;
+    }
 }
 
 .smallPics {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallPics img {
+    /* Remove width and max-width to use natural size */
+    height: auto;
+    display: block;
 }
 
 .text-content {
@@ -50,5 +103,11 @@
 .icon-container p {
     color: inherit;
     margin-top: 5px;
+}
+
+.bigPicture {
+    /* Remove width and max-width to use natural size */
+    height: auto;
+    display: block;
 }
 
