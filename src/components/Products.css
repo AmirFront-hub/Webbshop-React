@@ -1,5 +1,5 @@
 .product-card {
-  width: 220px;  /* Fixed width instead of filling the cell */
+  width: 220px; 
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
@@ -69,26 +69,26 @@
   background: #217021;
 }
 
-/* Modern Product Grid Layout */
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  row-gap: 28px;    /* Vertical spacing remains the same */
-  column-gap: 12px; /* Horizontal spacing is smaller */
+  row-gap: 28px;   
+  column-gap: 12px; 
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px 0;
+  
 }
 
-/* Clean container background */
+
 .product-grid-container {
   background-color: #f8f9fa;
   width: 100%;
   padding: 40px 0;
 }
 
-/* Stylish loader */
+
 .loading-message {
   display: flex;
   justify-content: center;
