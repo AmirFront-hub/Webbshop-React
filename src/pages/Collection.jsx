@@ -8,8 +8,9 @@ import './Collection.css';
 
 const Collection = () => {
   // Get category from URL params
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const categoryParam = searchParams.get('category');
+  const sortParam = searchParams.get('sort') || 'default';
   
   const { products, fetchProducts, loading } = useProductStore();
   const addToCart = useCartStore(state => state.addToCart);
@@ -19,13 +20,21 @@ const Collection = () => {
     category: categoryParam || 'all',
     priceRange: [0, 10000]
   });
+  
+  // Add sort state
+  const [sort, setSort] = useState(sortParam);
 
   // Update filter when URL params change
   useEffect(() => {
     if (categoryParam) {
       setFilter(prev => ({...prev, category: categoryParam}));
     }
-  }, [categoryParam]);
+    
+    // Update sort state if URL param changes
+    if (sortParam) {
+      setSort(sortParam);
+    }
+  }, [categoryParam, sortParam]);
 
   useEffect(() => {
     fetchProducts();
@@ -33,6 +42,15 @@ const Collection = () => {
 
   // Static category list - these are the categories we want to filter by
   const categories = ['all', 'Leksaker', 'Dockor', 'Pyssel', 'TV-Spel'];
+  
+  // Sorting options
+  const sortOptions = [
+    { value: 'default', label: 'Standard' },
+    { value: 'name-asc', label: 'Namn (A-Ö)' },
+    { value: 'name-desc', label: 'Namn (Ö-A)' },
+    { value: 'price-asc', label: 'Pris (Lägst först)' },
+    { value: 'price-desc', label: 'Pris (Högst först)' }
+  ];
 
   // Helper function to safely get field value regardless of case
   const getField = (obj, fieldName) => {
@@ -57,7 +75,7 @@ const Collection = () => {
   const filteredProducts = products.filter(product => {
     // Get values using the helper
     const productCategory = getField(product, 'category');
-    const productPrice = getField(product, 'price');
+    const productPrice = parseFloat(getField(product, 'price'));
     
     // Handle "all" category
     if (filter.category === 'all') {
@@ -70,8 +88,38 @@ const Collection = () => {
            productPrice >= filter.priceRange[0] && 
            productPrice <= filter.priceRange[1];
   });
-
-  if (loading) return <p>Laddar produkter...</p>;
+  
+  // Sort the filtered products
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    const nameA = getField(a, 'name').toLowerCase();
+    const nameB = getField(b, 'name').toLowerCase();
+    const priceA = parseFloat(getField(a, 'price'));
+    const priceB = parseFloat(getField(b, 'price'));
+    
+    switch (sort) {
+      case 'name-asc':
+        return nameA.localeCompare(nameB);
+      case 'name-desc':
+        return nameB.localeCompare(nameA);
+      case 'price-asc':
+        return priceA - priceB;
+      case 'price-desc':
+        return priceB - priceA;
+      default:
+        return 0; // Default sorting (could be by ID or as they come from API)
+    }
+  });
+  
+  // Handle sorting change
+  const handleSortChange = (e) => {
+    const newSort = e.target.value;
+    setSort(newSort);
+    
+    // Update URL with new sort parameter
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set('sort', newSort);
+    setSearchParams(newParams);
+  };
 
   return (
     <Fragment>
@@ -121,20 +169,48 @@ const Collection = () => {
             </div>
             
             <button 
-              className="reset-filter"
+              className="reset-filter" 
               onClick={() => setFilter({category: 'all', priceRange: [0, 10000]})}
             >
               Återställ filter
             </button>
           </div>
-
-          <div className="product-grid">
-            {filteredProducts.map(product => (
-              <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
-            ))}
-            {filteredProducts.length === 0 && (
-              <div className="no-products">Inga produkter matchar ditt filter</div>
-            )}
+          
+          <div className="product-section">
+            {/* Add sort dropdown */}
+            <div className="sort-container">
+              <label htmlFor="sort-select">Sortera efter: </label>
+              <select 
+                id="sort-select" 
+                value={sort} 
+                onChange={handleSortChange}
+                className="sort-select"
+              >
+                {sortOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            
+            <div className="product-grid">
+              {loading ? (
+                <p className="loading">Laddar produkter...</p>
+              ) : sortedProducts.length > 0 ? (
+                sortedProducts.map(product => (
+                  <ProductCard 
+                    key={product.id} 
+                    product={product} 
+                    onAddToCart={() => addToCart(product)} 
+                  />
+                ))
+              ) : (
+                <div className="no-products">
+                  Inga produkter hittades med de valda filtren.
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

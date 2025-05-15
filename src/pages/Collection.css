@@ -177,6 +177,15 @@
   .collection-layout {
     flex-direction: column;
   }
+  
+  .sort-container {
+    margin-top: 15px;
+    align-self: stretch;
+  }
+  
+  .sort-select {
+    flex: 1;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -229,5 +238,68 @@
   .reset-filter {
     padding: 6px 0; /* Remove horizontal padding, keep vertical */
     font-size: 12px;
+  }
+}
+
+/* Add these styles to your existing Collection.css file */
+
+.product-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  align-self: flex-end;
+}
+
+.sort-container label {
+  margin-right: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #5c95d9;
+  box-shadow: 0 0 0 2px rgba(92, 149, 217, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .sort-container {
+    margin-top: 15px;
+    align-self: stretch;
+  }
+  
+  .sort-select {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sort-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sort-container label {
+    margin-bottom: 5px;
+  }
+  
+  .sort-select {
+    width: 100%;
   }
 }
