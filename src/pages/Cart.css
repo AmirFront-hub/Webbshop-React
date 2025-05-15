@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: flex-start;
     min-height: 70vh;
+    margin-top: 60px; /* Adds space between navbar and cart-page */
 }
 
 .cart-items {
@@ -19,7 +20,7 @@
     flex-direction: column;
     align-items: flex-start;
     border-bottom: 1px solid #eee;
-    padding-bottom: 12px;
+    padding: 10px 10px 12px 10px;
 }
 
 .cart-item-row span {
@@ -43,13 +44,15 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 16px; /* Increased margin below item name/price */
+    margin-top: 12px;
 }
 
 .item-controls {
     display: flex;
     gap: 8px;
     align-items: center;
+    margin-bottom: 12px; /* Adds more space below quantity controls */
 }
 
 .item-controls button {
@@ -128,4 +131,47 @@
 .cart-title {
     text-align: left;
     margin-bottom: 24px;
+}
+
+.cart-header-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding: 10px 10px 10px 10px;
+    background-color: #EDEDED;
+    border-radius: 6px;
+}
+
+@media (max-width: 600px) {
+    .cart-page {
+        flex-direction: column-reverse; /* summary above items */
+        align-items: stretch;
+    }
+    .cart-items,
+    .cart-summary {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .cart-summary {
+        margin-bottom: 24px;
+        margin-top: 0;
+        align-self: stretch;
+    }
+    .cart-header-row {
+        font-size: 1rem;
+        padding: 8px 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .cart-title {
+        font-size: 1.2rem;
+    }
+    .cart-summary button {
+        font-size: 1rem;
+        padding: 10px 0;
+    }
 }
