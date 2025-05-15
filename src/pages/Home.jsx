@@ -76,7 +76,7 @@ function Home() {
       <div style={{
         display: 'flex',
         justifyContent: 'center',
-        marginBottom: '80px',
+        marginBottom: '30px',
         flexWrap: 'wrap',
         gap: '45px',
       }}>
@@ -88,6 +88,11 @@ function Home() {
           />
         ))}
       </div>
+
+        <Link to="/collection" className='all-products'>
+        <p>Se alla produkter</p>
+        </Link>
+
     </Fragment>
   )
 }

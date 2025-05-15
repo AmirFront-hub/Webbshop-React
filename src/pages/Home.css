@@ -85,6 +85,15 @@
     display: block;
 }
 
+.all-products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    text-decoration: none;
+}
+
 /* --- MEDIA QUERIES AT THE BOTTOM --- */
 
 @media screen and (max-width: 1200px) {
