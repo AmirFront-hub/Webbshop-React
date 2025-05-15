@@ -5,6 +5,9 @@ import facebookIcon from "../assets/facebook 1.png";
 import youtubeIcon from "../assets/youtube 1.png";
 
 const Footer = () => {
+
+const currentYear = new Date().getFullYear();
+
   return (
     <Fragment>
 
@@ -34,7 +37,7 @@ const Footer = () => {
 
     <div className="copyright">
       <div className="copyright-content">
-        <p>Copyright © 2025 KidGaming. All rights reserved.</p>
+        <p>Copyright © {currentYear} KidGaming. All rights reserved.</p>
       </div>
     </div>
     </Fragment>

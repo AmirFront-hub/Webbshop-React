@@ -19,15 +19,13 @@
 .filter-sidebar {
   position: sticky;
   top: 20px; /* Distance from top of viewport when sticky */
-  height: fit-content;
-  width: 250px;
-  min-width: 250px;
-  background: white;
+  flex: 0 0 250px;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  align-self: flex-start;
-  border: 1px solid #eee;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  height: fit-content;
+  box-sizing: border-box; /* Critical - include padding in width calculation */
   z-index: 10; /* Ensures it appears above other content */
 }
 
@@ -104,6 +102,50 @@
   color: #666;
 }
 
+/* Update product grid for mobile - expanded range to 600px */
+
+/* Product grid base styles */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  flex: 1;
+}
+
+/* Mobile-specific styles (320px to 600px) */
+@media screen and (max-width: 600px) {
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .collection-container {
+    padding: 16px;
+  }
+  
+  .collection-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  
+  .no-products {
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Additional adjustments for very small screens */
+@media screen and (max-width: 374px) {
+  .product-grid {
+    gap: 8px; /* Even smaller gap for very small screens */
+  }
+  
+  .collection-layout {
+    gap: 8px;
+  }
+}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .collection-layout {
@@ -124,7 +166,20 @@
   }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 768px) {
+  .filter-sidebar {
+    flex: none;
+    width: 100%;
+    padding: 15px; /* Reduced padding */
+    margin-bottom: 20px;
+  }
+  
+  .collection-layout {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .collection-container {
     padding: 16px;
   }
@@ -132,5 +187,47 @@
   .collection-title {
     font-size: 1.5rem;
     margin-bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .collection-container {
+    padding: 10px;
+  }
+  
+  .filter-sidebar {
+    padding: 12px; /* Further reduced padding */
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .collection-container {
+    padding: 8px 4px; /* Minimal horizontal padding */
+  }
+  
+  .filter-sidebar {
+    padding: 10px 8px; /* Minimal padding */
+    border-radius: 4px; /* Smaller border radius */
+  }
+  
+  .filter-section {
+    margin-bottom: 12px; /* Reduced spacing */
+  }
+  
+  .filter-option {
+    font-size: 12px;
+  }
+  
+  .filter-option input {
+    margin-right: 4px; /* Smaller margin */
+  }
+  
+  .price-range input {
+    margin: 8px 0; /* Add some vertical spacing */
+  }
+  
+  .reset-filter {
+    padding: 6px 0; /* Remove horizontal padding, keep vertical */
+    font-size: 12px;
   }
 }

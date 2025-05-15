@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 import './App.css';
 
 const App = () => {
-  const currentYear = new Date().getFullYear();
   
   return (
     <div className='app-container'>
@@ -32,9 +31,6 @@ const App = () => {
 
       <Footer />
       
-      <div className='copyright'>
-        <p>&copy; {currentYear} Leksaksbutiken. Alla rättigheter förbehållna.</p>
-      </div>
     </div>
   );
 };

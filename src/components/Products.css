@@ -187,3 +187,90 @@
     padding: 24px 16px;
   }
 }
+
+/* Update media query for mobile (up to 600px) */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; /* Increased gap between cards */
+    padding: 16px 12px; /* Reduced padding */
+    max-width: 100%;
+  }
+  
+  /* Smaller product cards for 2-column layout */
+  .product-card {
+    width: 100%; /* Full width of grid cell */
+    height: 300px; /* Further reduced height */
+    padding: 10px 8px; /* Smaller padding */
+    gap: 2px; /* Reduce gap between elements */
+    border-radius: 8px; /* Smaller border radius */
+  }
+  
+  /* Adjust image size */
+  .product-image {
+    width: 120px; /* Smaller image container */
+    height: 140px; /* Shorter height */
+    margin-bottom: 8px;
+  }
+  
+  /* Adjust text sizes */
+  .product-name {
+    font-size: 0.95rem;
+    margin: 6px 0 2px 0;
+  }
+  
+  .product-price {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+  
+  .product-stock {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .product-card button {
+    font-size: 0.85rem;
+    padding: 8px 0;
+  }
+}
+
+/* Very small screens (320px to 374px) */
+@media screen and (max-width: 374px) {
+  .product-grid {
+    gap: 10px; /* Even smaller gap for very small screens */
+    padding: 12px 8px;
+  }
+  
+  .product-card {
+    height: 280px; /* Further reduced height */
+    padding: 8px 5px; /* Even smaller padding */
+    border-radius: 6px;
+  }
+  
+  .product-image {
+    width: 110px; /* Even smaller image container */
+    height: 130px;
+    margin-bottom: 6px;
+  }
+  
+  .product-name {
+    font-size: 0.85rem;
+    margin: 4px 0 2px 0;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  
+  .product-stock {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+  
+  .product-card button {
+    font-size: 0.8rem;
+    padding: 7px 0;
+  }
+}

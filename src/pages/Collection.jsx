@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import useProductStore from '../store/useShopStore';
 import useCartStore from '../store/useCartStore';
 import ProductCard from '../components/ProductCard';
@@ -6,14 +7,25 @@ import '../components/Products.css';
 import './Collection.css';
 
 const Collection = () => {
+  // Get category from URL params
+  const [searchParams] = useSearchParams();
+  const categoryParam = searchParams.get('category');
+  
   const { products, fetchProducts, loading } = useProductStore();
   const addToCart = useCartStore(state => state.addToCart);
 
-  // Add filter state
+  // Initialize filter with the category from URL if available
   const [filter, setFilter] = useState({
-    category: 'all',
+    category: categoryParam || 'all',
     priceRange: [0, 10000]
   });
+
+  // Update filter when URL params change
+  useEffect(() => {
+    if (categoryParam) {
+      setFilter(prev => ({...prev, category: categoryParam}));
+    }
+  }, [categoryParam]);
 
   useEffect(() => {
     fetchProducts();
@@ -22,23 +34,8 @@ const Collection = () => {
   // Static category list - these are the categories we want to filter by
   const categories = ['all', 'Leksaker', 'Dockor', 'Pyssel', 'TV-Spel'];
 
-  // Add debugging to check what's really in the products
-  useEffect(() => {
-    // What categories exist in the data?
-    const uniqueCategories = [...new Set(products.map(p => p.category))];
-    console.log('Categories in products:', uniqueCategories);
-    
-    // How many products per category?
-    const counts = {};
-    uniqueCategories.forEach(cat => {
-      counts[cat] = products.filter(p => p.category === cat).length;
-    });
-    console.log('Products per category:', counts);
-  }, [products]);
-
-  // Add this helper function to your Collection component
+  // Helper function to safely get field value regardless of case
   const getField = (obj, fieldName) => {
-    // Check for undefined or null object
     if (!obj) return '';
     
     // Try direct access with the provided field name
@@ -56,7 +53,7 @@ const Collection = () => {
     return '';
   };
 
-  // Then update your filter function to use this helper:
+  // Filter products based on selected category and price range
   const filteredProducts = products.filter(product => {
     // Get values using the helper
     const productCategory = getField(product, 'category');
@@ -68,7 +65,7 @@ const Collection = () => {
              productPrice <= filter.priceRange[1];
     }
     
-    // Check category match
+    // Check category match with case insensitivity
     return productCategory.toLowerCase() === filter.category.toLowerCase() && 
            productPrice >= filter.priceRange[0] && 
            productPrice <= filter.priceRange[1];

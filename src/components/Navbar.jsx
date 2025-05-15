@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../assets/Logo.png';
 import cartlogo from "../assets/Cart.png";
 import NavIcon from "../assets/Nav-icon.png";
@@ -8,10 +8,19 @@ import useCartStore from '../store/useCartStore';
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
 
   const itemCount = useCartStore((state) =>
-  state.cart.reduce((sum, item) => sum + item.quantity, 0)
-);
+    state.cart.reduce((sum, item) => sum + item.quantity, 0)
+  );
+
+  // Function to handle category selection and close mobile menu if open
+  const handleCategoryClick = (category) => {
+    navigate(`/collection?category=${category}`);
+    if (isVisible) {
+      setIsVisible(false); // Close mobile menu after selection
+    }
+  };
 
   return (
     <div className='navbar'>
@@ -29,12 +38,27 @@ const Navbar = () => {
                 <img src={logo} alt="Logo" className="logo" />
             </Link>
 
-            {/* Desktop menu - updated to link to collection with categories */}
+            {/* Desktop menu with onClick handlers */}
             <div className="desktop-menu">
-                <NavLink to="/collection?category=TV-Spel" className="nav-link">TV-Spel</NavLink>
-                <NavLink to="/collection?category=Leksaker" className="nav-link">Leksaker</NavLink>
-                <NavLink to="/collection?category=Dockor" className="nav-link">Dockor</NavLink>
-                <NavLink to="/collection?category=Pyssel" className="nav-link">Pyssel</NavLink>
+                <button 
+                  onClick={() => handleCategoryClick('TV-Spel')} 
+                  className="nav-link"
+                >TV-Spel</button>
+                
+                <button 
+                  onClick={() => handleCategoryClick('Leksaker')} 
+                  className="nav-link"
+                >Leksaker</button>
+                
+                <button 
+                  onClick={() => handleCategoryClick('Dockor')} 
+                  className="nav-link"
+                >Dockor</button>
+                
+                <button 
+                  onClick={() => handleCategoryClick('Pyssel')} 
+                  className="nav-link"
+                >Pyssel</button>
             </div>
 
             {/* Cart */}
@@ -45,12 +69,27 @@ const Navbar = () => {
             </Link>
         </div>
         
-        {/* Mobile menu - also updated to link to collection with categories */}
+        {/* Mobile menu with onClick handlers */}
         <div className={`mobile-menu${isVisible ? ' active' : ''}`}>
-            <NavLink to="/collection?category=TV-Spel" className="nav-link">TV-Spel</NavLink>
-            <NavLink to="/collection?category=Leksaker" className="nav-link">Leksaker</NavLink>
-            <NavLink to="/collection?category=Dockor" className="nav-link">Dockor</NavLink>
-            <NavLink to="/collection?category=Pyssel" className="nav-link">Pyssel</NavLink>
+            <button 
+              onClick={() => handleCategoryClick('TV-Spel')} 
+              className="nav-link"
+            >TV-Spel</button>
+            
+            <button 
+              onClick={() => handleCategoryClick('Leksaker')} 
+              className="nav-link"
+            >Leksaker</button>
+            
+            <button 
+              onClick={() => handleCategoryClick('Dockor')} 
+              className="nav-link"
+            >Dockor</button>
+            
+            <button 
+              onClick={() => handleCategoryClick('Pyssel')} 
+              className="nav-link"
+            >Pyssel</button>
         </div>
     </div>
   )
