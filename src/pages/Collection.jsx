@@ -36,21 +36,42 @@ const Collection = () => {
     console.log('Products per category:', counts);
   }, [products]);
 
-  // Simple filter function - easy to debug
-  // Handle both field name cases
+  // Add this helper function to your Collection component
+  const getField = (obj, fieldName) => {
+    // Check for undefined or null object
+    if (!obj) return '';
+    
+    // Try direct access with the provided field name
+    if (obj[fieldName] !== undefined) return obj[fieldName];
+    
+    // Try with first letter capitalized
+    const capitalized = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+    if (obj[capitalized] !== undefined) return obj[capitalized];
+    
+    // Try with first letter lowercase
+    const lowercased = fieldName.charAt(0).toLowerCase() + fieldName.slice(1);
+    if (obj[lowercased] !== undefined) return obj[lowercased];
+    
+    // If nothing found, return empty string
+    return '';
+  };
+
+  // Then update your filter function to use this helper:
   const filteredProducts = products.filter(product => {
+    // Get values using the helper
+    const productCategory = getField(product, 'category');
+    const productPrice = getField(product, 'price');
+    
     // Handle "all" category
     if (filter.category === 'all') {
-      return product.price >= filter.priceRange[0] && 
-             product.price <= filter.priceRange[1];
+      return productPrice >= filter.priceRange[0] && 
+             productPrice <= filter.priceRange[1];
     }
     
-    // Check both possible field names
-    const productCategory = product.category || product.Category; 
-    
-    return productCategory === filter.category && 
-           product.price >= filter.priceRange[0] && 
-           product.price <= filter.priceRange[1];
+    // Check category match
+    return productCategory.toLowerCase() === filter.category.toLowerCase() && 
+           productPrice >= filter.priceRange[0] && 
+           productPrice <= filter.priceRange[1];
   });
 
   if (loading) return <p>Laddar produkter...</p>;

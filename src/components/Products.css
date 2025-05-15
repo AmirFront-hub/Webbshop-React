@@ -6,9 +6,12 @@
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Center items horizontally */
   transition: all 0.2s ease;
   gap: 4px;
+  border: 1px solid #e0e0e0;
+  height: 380px; /* Fixed height for consistency */
+  position: relative; /* For absolute positioning if needed */
 }
 
 .product-card:hover {
@@ -18,9 +21,25 @@
 
 .product-image {
   width: 120px;
-  height: 120px;
-  object-fit: contain;
-  margin-bottom: 16px;
+  height: 200px; /* Fixed height container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  overflow: hidden; /* Prevent image overflow */
+  background-color: #f9f9f9; /* Light background for empty areas */
+  border-radius: 4px;
+}
+
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Maintain aspect ratio while fitting in container */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 .product-name {
@@ -56,19 +75,51 @@
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 10px 20px;
+  padding: 10px 0; /* Remove horizontal padding */
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
-  width: 80%; /* Smaller button width */
-  margin-top: auto;
+  width: 80%; /* Consistent width for all buttons */
+  margin: auto auto 0 auto; /* Push to bottom and center horizontally */
+  display: block; /* Ensure it takes the full width specified */
+  text-align: center; /* Center text inside button */
 }
 
 .product-card button:hover {
   background: #217021;
 }
 
+.product-card button:disabled {
+  background: #cccccc;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+/* Adjust product info container to take full height */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  flex-grow: 1; /* Take remaining space */
+  justify-content: space-between; /* Space between content and button */
+}
+
+/* Product info content wrapper to push button to bottom */
+.product-info-content {
+  width: 100%;
+  text-align: center;
+}
+
+/* Ensure button container is at the bottom */
+.product-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto; /* Push to bottom */
+  padding-top: 10px; /* Add some space above button */
+}
 
 .product-grid {
   display: grid;
