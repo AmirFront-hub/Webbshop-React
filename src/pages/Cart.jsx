@@ -15,6 +15,25 @@ const Cart = () => {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Add this helper function to your Cart component at the top
+  const getField = (obj, fieldName) => {
+    if (!obj) return '';
+    
+    // Try direct access with the provided field name
+    if (obj[fieldName] !== undefined) return obj[fieldName];
+    
+    // Try with first letter capitalized
+    const capitalized = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+    if (obj[capitalized] !== undefined) return obj[capitalized];
+    
+    // Try with first letter lowercase
+    const lowercased = fieldName.charAt(0).toLowerCase() + fieldName.slice(1);
+    if (obj[lowercased] !== undefined) return obj[lowercased];
+    
+    // If nothing found, return empty string
+    return '';
+  };
+
   return (
     <Fragment>
       <div className="cart-page">
@@ -35,17 +54,23 @@ const Cart = () => {
               cart.map(item => (
                 <div key={item.id} className="cart-item-row">
                   <div className="item-image">
-                    {item.imageURL && <img src={item.imageURL} alt={item.name} />}
+                    {/* Use the helper function to access imageURL property */}
+                    {getField(item, 'imageURL') && 
+                      <img 
+                        src={getField(item, 'imageURL')} 
+                        alt={getField(item, 'name')} 
+                      />
+                    }
                   </div>
                   
                   <div className="item-main">
                     <div className="item-details">
-                      <span className="item-name">{item.name}</span>
-                      <span className="item-price">{item.price} :-</span>
+                      <span className="item-name">{getField(item, 'name')}</span>
+                      <span className="item-price">{getField(item, 'price')} :-</span>
                     </div>
                     <div className="item-controls">
                       <button onClick={() => handleQuantity(item.id, -1)}>-</button>
-                      <span className="item-qty">{item.quantity}</span>
+                      <span className="item-qty">{getField(item, 'quantity')}</span>
                       <button onClick={() => handleQuantity(item.id, 1)}>+</button>
                       <button className="remove-button" onClick={() => removeFromCart(item.id)}>×</button>
                     </div>

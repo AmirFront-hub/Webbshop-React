@@ -2,37 +2,79 @@
     display: flex;
     gap: 32px;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; /* Align items to the top */
     min-height: 70vh;
-    margin-top: 60px; /* Adds space between navbar and cart-page */
+    margin-top: 60px; /* Space between navbar and cart-page */
+    width: 90%; /* Control overall width */
+    max-width: 1200px; /* Maximum width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cart-items {
-    flex: none;
-    width: 320px;
+    flex: 1; /* Allow it to grow */
+    min-width: 320px;
+    max-width: 500px; /* Increased from 320px */
     min-height: 400px;
     display: flex;
     flex-direction: column;
+    padding-top: 0; /* Remove any extra padding */
+    position: relative;
+    max-height: 600px; /* Set a maximum height */
+}
+
+/* Create scrollable container for cart items */
+.cart-items-container {
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 500px; /* Set a maximum height for scrolling */
+    padding-right: 5px; /* Space for scrollbar */
+    
+}
+
+/* Custom scrollbar styling */
+.cart-items-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items-container::-webkit-scrollbar-thumb {
+    background-color: #AAAAAA;
+    border-radius: 6px;
+}
+
+.cart-items-container::-webkit-scrollbar-track {
+    background-color: #EEEEEE;
+    border-radius: 6px;
+}
+
+.cart-header-row {
+    align-items: center;
+    background-color: #EDEDED;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: flex;
+    font-weight: 600;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 10px;
+    width: 100%;
 }
 
 .cart-item-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     border-bottom: 1px solid #eee;
-    padding: 10px 10px 12px 10px;
-}
-
-.cart-item-row span {
-    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    gap: 15px;
+    padding: 15px 10px;
+    width: 100%;
 }
 
 .cart-item-row .item-price {
-    width: auto;
-    text-align: right;
     justify-content: center;
     margin-left: 16px;
+    text-align: right;
     white-space: nowrap;
+    width: auto;
 }
 
 .cart-item-row .item-qty {
@@ -40,11 +82,13 @@
 }
 
 .item-main {
+    flex: 1;
     display: flex;
-    width: 100%;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px; /* Increased margin below item name/price */
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 16px;
     margin-top: 12px;
 }
 
@@ -52,7 +96,7 @@
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 12px; /* Adds more space below quantity controls */
+    margin-bottom: 12px;
 }
 
 .item-controls button {
@@ -88,10 +132,13 @@
     min-height: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start; 
+    margin-top: 60px; 
 }
 
-.cart-summary button {
+/* Fix button positioning to stay at bottom */
+.cart-summary button,
+.checkout-button {
     background-color: #99F99C;
     color: #222;
     border: none;
@@ -102,19 +149,21 @@
     width: 80%;
     align-self: center;
     cursor: pointer;
-    margin-top: auto;
     transition: background 0.2s, color 0.2s;
 }
 
-.cart-summary button:hover {
-    background-color: #7be87e;
-    color: #111;
+/* Make summary items scrollable if needed */
+.summary-items {
+    max-height: 500px;
+    overflow-y: auto;
+    margin: 15px 0 15px 0; /* Space above and below items */
 }
 
-.cart-summary .summary-divider {
-    border: none;
-    border-bottom: 1px solid #1f1f1f;
-    margin: 12px 0;
+/* Add a link container to keep link at bottom too */
+.cart-summary a {
+    display: block;
+    text-align: center;
+    margin-top: auto; /* Push to bottom if no button */
 }
 
 .gratis {
@@ -125,7 +174,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4px;
+    margin: 6px 0 6px 0;
 }
 
 .cart-title {
@@ -133,15 +182,66 @@
     margin-bottom: 24px;
 }
 
-.cart-header-row {
+/* Updated cart item image styling */
+.item-image {
+    width: 80px; 
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin-right: 15px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.item-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+/* Adjust cart item row to accommodate the images better */
+.cart-item-row {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    border-bottom: 1px solid #eee;
+    padding: 15px 10px;
+    gap: 15px; /* Increased gap between elements */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Keep item-main full width for proper text alignment */
+.item-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between;
+    min-width: 0; /* Allow text to truncate properly */
+    width: 100%;
+    margin-bottom: 16px; /* Increased margin below item name/price */
+    margin-top: 12px;
+}
+
+/* Ensure item details (name/price) are properly aligned */
+.item-details {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
-    font-weight: 600;
     margin-bottom: 8px;
-    padding: 10px 10px 10px 10px;
-    background-color: #EDEDED;
-    border-radius: 6px;
+}
+
+/* Allow item name to truncate if too long */
+.item-name {
+    font-weight: 500;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 15px; /* Increased margin */
 }
 
 @media (max-width: 600px) {
@@ -162,16 +262,37 @@
         align-self: stretch;
     }
     .cart-header-row {
+        box-sizing: border-box;
         font-size: 1rem;
         padding: 8px 4px;
         width: 100%;
+    }
+    
+    .cart-items,
+    .cart-summary {
         box-sizing: border-box;
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
     }
-    .cart-title {
-        font-size: 1.2rem;
+    
+    .cart-page {
+        align-items: stretch;
+        flex-direction: column-reverse;
     }
+    
+    .cart-summary {
+        align-self: stretch;
+        margin-bottom: 24px;
+        margin-top: 0;
+    }
+    
     .cart-summary button {
         font-size: 1rem;
         padding: 10px 0;
+    }
+    
+    .cart-title {
+        font-size: 1.2rem;
     }
 }

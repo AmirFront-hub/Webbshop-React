@@ -1,5 +1,5 @@
 .product-card {
-  width: 220px; 
+  width: 240px; /* Increased from 220px to handle wider images */
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
@@ -10,7 +10,7 @@
   transition: all 0.2s ease;
   gap: 4px;
   border: 1px solid #e0e0e0;
-  height: 380px; /* Fixed height for consistency */
+  height: 420px; /* Increased height for larger images */
   position: relative; /* For absolute positioning if needed */
 }
 
@@ -20,8 +20,8 @@
 }
 
 .product-image {
-  width: 120px;
-  height: 200px; /* Fixed height container */
+  width: 180px; /* Increased from 120px */
+  height: 220px; /* Increased from 200px */
   display: flex;
   align-items: center;
   justify-content: center;
