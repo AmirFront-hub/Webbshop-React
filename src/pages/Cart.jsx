@@ -22,13 +22,16 @@ const Cart = () => {
   };
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <Fragment>
       <div className="cart-page">
         {/* Items List */}
         <div className="cart-items">
-          <h1 className="cart-title">Din varukorg</h1>
+          <h1 className="cart-title">
+            Din varukorg {itemCount > 0 && <span>({itemCount})</span>}
+          </h1>
           <div className="cart-header-row">
             <span>Artikel</span>
             <span>Delsumma</span>
