@@ -25,7 +25,7 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     background: #746f6f;
-    color: #fff;
+    color: #070707;
     padding: 32px 24px 16px 24px;
     flex-wrap: wrap;
     gap: 32px;
@@ -66,7 +66,7 @@ footer {
 .media-footer a {
     display: flex;
     align-items: center;
-    color: #fff;
+    color: #070707;
     text-decoration: none;
     font-size: 1rem;
     gap: 8px;

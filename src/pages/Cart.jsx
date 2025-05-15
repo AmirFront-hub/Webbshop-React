@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 const Cart = () => {
   return (
-    <div>
-      
-    </div>
+    <Fragment>
+        <h1>Din varukorg</h1>
+        <div className='cart'></div>
+    </Fragment>
   )
 }
 
