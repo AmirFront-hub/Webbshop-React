@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/Logo.png';
 import cartlogo from "../assets/Cart.png";
 import NavIcon from "../assets/Nav-icon.png";
-import "./Navbar.css";
+import './Navigation.css';
 import useCartStore from '../store/useCartStore';
 
 const Navbar = () => {
