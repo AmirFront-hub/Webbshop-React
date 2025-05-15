@@ -1,14 +1,16 @@
 import { create } from 'zustand';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 
-export const useCartStore = create(set => ({
-  cart: [],
-  setCart: (cart) => set({ cart }),
-  updateQuantity: (id, delta) =>
-    set(state => ({
-      cart: state.cart.map(item =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      )
-    }))
+const useProductStore = create((set) => ({
+  products: [],
+  loading: false,
+  fetchProducts: async () => {
+    set({ loading: true });
+    const querySnapshot = await getDocs(collection(db, 'products'));
+    const items = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    set({ products: items, loading: false });
+  }
 }));
+
+export default useProductStore;

@@ -1,21 +1,13 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import './Cart.css';
-
-const initialCart = [];
+import useCartStore from '../store/useCartStore';
 
 const Cart = () => {
-  const [cart, setCart] = useState(initialCart);
+  const cart = useCartStore(state => state.cart);
+  const updateQuantity = useCartStore(state => state.updateQuantity);
 
   const handleQuantity = (id, delta) => {
-    setCart(cart =>
-      cart
-        .map(item =>
-          item.id === id
-            ? { ...item, quantity: item.quantity + delta }
-            : item
-        )
-        .filter(item => item.quantity > 0)
-    );
+    updateQuantity(id, delta);
   };
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
