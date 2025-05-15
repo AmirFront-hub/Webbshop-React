@@ -16,11 +16,7 @@ const Collection = () => {
   return (
     <div className="product-grid">
       {products.map(product => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          onAddToCart={addToCart}
-        />
+        <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
       ))}
     </div>
   );
