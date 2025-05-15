@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import bigPicture from "../assets/TitleHighlight.png";
 import smallPicture1 from "../assets/LegoHighlight.png";
 import smallPicture2 from "../assets/GameHighlight.png";
@@ -8,9 +8,20 @@ import toyIcon from "../assets/leksak-icon.png"
 import puzzleIcon from "../assets/pussel-icon.png";
 import './Home.css'
 import { Link } from 'react-router-dom';
+import useProductStore from '../store/useShopStore';
+import useCartStore from '../store/useCartStore';
+import ProductCard from '../components/ProductCard';
 
 function Home() {
- 
+  const { products, fetchProducts } = useProductStore();
+  const { addToCart } = useCartStore();
+  
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+  
+  // Get first 4 products
+  const displayProducts = products.slice(0, 4);
 
   return (
     <Fragment>
@@ -61,6 +72,22 @@ function Home() {
         <h2>Brett utbud - låga priser</h2>
       </div>
 
+      
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '80px',
+        flexWrap: 'wrap',
+        gap: '45px',
+      }}>
+        {displayProducts.map(product => (
+          <ProductCard 
+            key={product.id} 
+            product={product} 
+            onAddToCart={addToCart} 
+          />
+        ))}
+      </div>
     </Fragment>
   )
 }

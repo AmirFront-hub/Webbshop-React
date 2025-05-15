@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   transition: all 0.2s ease;
-  margin: 0 auto; /* Center the card in its cell */
+  gap: 4px;
 }
 
 .product-card:hover {
@@ -72,13 +72,13 @@
 /* Modern Product Grid Layout */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px 20px;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 28px;    /* Vertical spacing remains the same */
+  column-gap: 12px; /* Horizontal spacing is smaller */
   width: 100%;
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 24px;
-  justify-items: center;
+  padding: 24px 0;
 }
 
 /* Clean container background */
