@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom';
 import './Footer.css'
 import instagramIcon from "../assets/instagram 1.png";
 import facebookIcon from "../assets/facebook 1.png";
@@ -31,13 +32,15 @@ const currentYear = new Date().getFullYear();
             <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
               <img src={youtubeIcon} alt="Youtube" className='social-icon'/>Youtube
             </a>
+            
         </div>
      </div>
     </footer>
 
     <div className="copyright">
       <div className="copyright-content">
-        <p>Copyright © {currentYear} KidGaming. All rights reserved.</p>
+        <p>&copy; {currentYear} Leksaksbutiken. Alla rättigheter förbehållna.</p>
+        <Link to="/admin" className="admin-link">Admin</Link>
       </div>
     </div>
     </Fragment>
