@@ -1,10 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import './Cart.css';
 
-const initialCart = [
-  { id: 1, name: 'Leksak 1', price: 100, quantity: 1 },
-  { id: 2, name: 'Leksak 2', price: 200, quantity: 2 }
-];
+const initialCart = [];
 
 const Cart = () => {
   const [cart, setCart] = useState(initialCart);
