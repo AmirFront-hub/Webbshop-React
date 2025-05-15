@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProductItem.css';
+import './Products.css';
 
 const ProductCard = ({ product, onAddToCart }) => (
   <div className="product-card">

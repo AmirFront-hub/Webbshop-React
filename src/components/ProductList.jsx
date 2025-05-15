@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useProductStore from '../stores/useProductStore';
 import useCartStore from '../stores/useCartStore';
 import ProductCard from './ProductCard';
-import './ProductGrid.css';
+import "../components/ProductGrid.css";
 
 const ProductList = () => {
   const { products, fetchProducts, loading } = useProductStore();
@@ -12,13 +12,19 @@ const ProductList = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  if (loading) return <div className="loading-message">Laddar produkter...</div>;
+  if (loading) return <div className="loading-message">Laddar produkter</div>;
 
   return (
-    <div className="product-grid">
-      {products.map(product => (
-        <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
-      ))}
+    <div className="product-grid-container">
+      <div className="product-grid">
+        {products.map(product => (
+          <ProductCard 
+            key={product.id} 
+            product={product} 
+            onAddToCart={addToCart} 
+          />
+        ))}
+      </div>
     </div>
   );
 };
