@@ -29,12 +29,12 @@ const Navbar = () => {
                 <img src={logo} alt="Logo" className="logo" />
             </Link>
 
-            {/* Desktop menu */}
+            {/* Desktop menu - updated to link to collection with categories */}
             <div className="desktop-menu">
-                <NavLink to="/" className="nav-link">TV-Spel</NavLink>
-                <NavLink to="/" className="nav-link">Leksaker</NavLink>
-                <NavLink to="/" className="nav-link">Dockor</NavLink>
-                <NavLink to="/" className="nav-link">Pyssel</NavLink>
+                <NavLink to="/collection?category=TV-Spel" className="nav-link">TV-Spel</NavLink>
+                <NavLink to="/collection?category=Leksaker" className="nav-link">Leksaker</NavLink>
+                <NavLink to="/collection?category=Dockor" className="nav-link">Dockor</NavLink>
+                <NavLink to="/collection?category=Pyssel" className="nav-link">Pyssel</NavLink>
             </div>
 
             {/* Cart */}
@@ -45,12 +45,12 @@ const Navbar = () => {
             </Link>
         </div>
         
-        {/* Mobile menu */}
+        {/* Mobile menu - also updated to link to collection with categories */}
         <div className={`mobile-menu${isVisible ? ' active' : ''}`}>
-            <NavLink to="/" className="nav-link">TV-Spel</NavLink>
-            <NavLink to="/" className="nav-link">Leksaker</NavLink>
-            <NavLink to="/" className="nav-link">Dockor</NavLink>
-            <NavLink to="/" className="nav-link">Pyssel</NavLink>
+            <NavLink to="/collection?category=TV-Spel" className="nav-link">TV-Spel</NavLink>
+            <NavLink to="/collection?category=Leksaker" className="nav-link">Leksaker</NavLink>
+            <NavLink to="/collection?category=Dockor" className="nav-link">Dockor</NavLink>
+            <NavLink to="/collection?category=Pyssel" className="nav-link">Pyssel</NavLink>
         </div>
     </div>
   )
