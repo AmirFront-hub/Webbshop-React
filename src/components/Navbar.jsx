@@ -4,9 +4,14 @@ import logo from '../assets/Logo.png';
 import cartlogo from "../assets/Cart.png";
 import NavIcon from "../assets/Nav-icon.png";
 import "./Navbar.css";
+import useCartStore from '../store/useCartStore';
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const itemCount = useCartStore((state) =>
+  state.cart.reduce((sum, item) => sum + item.quantity, 0)
+);
 
   return (
     <div className='navbar'>
@@ -36,7 +41,7 @@ const Navbar = () => {
             <Link to="/cart" className="cart-btn">
                 <img src={cartlogo} alt="cart-btn" className='cart-icon' />
                 <p className='varukorg'>Varukorg</p>
-                <span className='cart-counter'>0</span>
+                <span className='cart-counter'>{itemCount}</span>
             </Link>
         </div>
         
