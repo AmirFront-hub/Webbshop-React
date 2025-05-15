@@ -126,7 +126,6 @@
   grid-template-columns: repeat(3, 1fr);
   row-gap: 28px;   
   column-gap: 12px; 
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   
