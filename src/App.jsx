@@ -13,18 +13,16 @@ import AdminPanel from './components/AdminPanel';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
-const App = () => {
-  
+function App() {
   return (
-    <div className='app-container'>
+    <>
       <Navbar />
       <main>
         <Outlet />
       </main>
       <Footer />
-      
-    </div>
+    </>
   );
-};
+}
 
 export default App;
