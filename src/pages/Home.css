@@ -68,6 +68,13 @@
     justify-content: center;
     text-align: center;
     gap: 20px;
+    cursor: pointer; /* Add pointer cursor */
+}
+
+.icon-container-link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+  display: block; /* Make link fill container */
 }
 
 .icon-container a {

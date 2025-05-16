@@ -42,25 +42,25 @@ function Home() {
       <div>
         <div className='icon-container'>
           <div>
-            <Link to="/tvspel">
+            <Link to="/collection?category=TV-Spel">
               <img src={gameIcon} alt="Game Icon" className='icon' />
               <p>TV-Spel</p>
             </Link>
           </div>
           <div>
-            <Link to="/dockor">
+            <Link to="/collection?category=Dockor">
               <img src={dollIcon} alt="Doll Icon" className='icon' />
               <p>Dockor</p>
             </Link>
           </div>
           <div>
-            <Link to="/leksaker">
+            <Link to="/collection?category=Leksaker">
               <img src={toyIcon} alt="Toy Icon" className='icon' />
               <p>Leksaker</p>
             </Link>
           </div>
           <div>
-            <Link to="/pyssel">
+            <Link to="/collection?category=Pyssel">
               <img src={puzzleIcon} alt="Game Icon" className='icon' />
               <p>Pyssel</p>
             </Link>
