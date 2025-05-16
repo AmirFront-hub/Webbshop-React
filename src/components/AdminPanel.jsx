@@ -3,6 +3,7 @@ import useProductStore from '../store/useShopStore';
 import useAuthStore from '../store/useAuthStore';
 import { useNavigate } from 'react-router-dom';
 import './AdminPanel.css';
+import Joi from 'joi';
 
 const AdminPanel = () => {
   // Access the product store
@@ -68,33 +69,81 @@ const AdminPanel = () => {
     }
   };
   
+  // Create product validation schema
+  const productSchema = Joi.object({
+    name: Joi.string().required().min(2).max(100)
+      .messages({
+        'string.empty': 'Produktnamn är obligatoriskt',
+        'string.min': 'Produktnamn måste vara minst {#limit} tecken',
+        'string.max': 'Produktnamn får max vara {#limit} tecken'
+      }),
+    price: Joi.number().required().min(1).max(100000)
+      .messages({
+        'number.base': 'Pris måste vara ett nummer',
+        'number.empty': 'Pris är obligatoriskt',
+        'number.min': 'Pris måste vara minst {#limit} kr',
+        'number.max': 'Pris får inte överstiga {#limit} kr'
+      }),
+    category: Joi.string().required().valid(...categories)
+      .messages({
+        'string.empty': 'Kategori är obligatoriskt',
+        'any.only': 'Välj en giltig kategori'
+      }),
+    stock: Joi.number().required().min(0).max(10000)
+      .messages({
+        'number.base': 'Lagersaldo måste vara ett nummer',
+        'number.empty': 'Lagersaldo är obligatoriskt',
+        'number.min': 'Lagersaldo kan inte vara negativt',
+        'number.max': 'Lagersaldo får inte överstiga {#limit}'
+      }),
+    imageURL: Joi.string().allow('').uri()
+      .messages({
+        'string.uri': 'Ogiltig URL-format för bild'
+      })
+  });
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.name || !formData.price || !formData.category || !formData.stock) {
-      setMessage({ text: 'Alla obligatoriska fält måste fyllas i', type: 'error' });
+    // Prepare data for validation - ensure numbers are actually numbers
+    const dataToValidate = {
+      ...formData,
+      price: formData.price ? Number(formData.price) : '',
+      stock: formData.stock ? Number(formData.stock) : ''
+    };
+    
+    // Validate form data with Joi
+    const { error } = productSchema.validate(dataToValidate, { abortEarly: false });
+    
+    if (error) {
+      // Format all validation errors into a single message
+      const errorMessages = error.details.map(detail => detail.message).join('\n');
+      setMessage({ 
+        text: errorMessages, 
+        type: 'error' 
+      });
       return;
     }
     
-    // Validate image URL if provided
+    // Additional validation for image URL if needed
     if (formData.imageURL && !isValidImageUrl(formData.imageURL)) {
       setMessage({ text: 'Ogiltig bild URL. Använd en länk till en jpg, png, gif eller webp-fil', type: 'error' });
       return;
     }
     
-    // Create product object
-    const productData = {
-      name: formData.name,
-      price: parseInt(formData.price),
-      category: formData.category,
-      stock: parseInt(formData.stock),
-      imageURL: formData.imageURL || 'https://via.placeholder.com/150'
-    };
-    
+    // If validation passes, continue with saving the product
     try {
       setMessage({ text: 'Sparar...', type: 'info' });
+      
+      // Create product object
+      const productData = {
+        name: formData.name,
+        price: Number(formData.price),
+        category: formData.category,
+        stock: Number(formData.stock),
+        imageURL: formData.imageURL || 'https://via.placeholder.com/150'
+      };
       
       if (editMode && editProductId) {
         // Update existing product
