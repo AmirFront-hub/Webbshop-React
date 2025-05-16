@@ -35,7 +35,9 @@ const router = createHashRouter([
             },
         ],
     },
-]);
+], {
+    basename: ''  // Empty string with HashRouter
+});
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
