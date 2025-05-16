@@ -1,0 +1,23 @@
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    font-family: "Alata", sans-serif;
+    flex: 1;
+}
+.navbar {
+    padding: 0;
+    margin: 0;
+    font-family: "Alata", sans-serif;
+}
+
+footer {
+    font-family: "Alata", sans-serif;
+}

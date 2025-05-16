@@ -1,0 +1,128 @@
+footer {
+    width: 100vw;
+    background: #746f6f;
+    margin: 0;
+    padding: 0;
+}
+
+.copyright {
+    width: 100vw;
+    color: #000000;
+    text-align: center;
+    font-size: 0.95rem;
+    margin: 0;
+    position: static; /* Not fixed */
+}
+
+.copyright-content {
+    padding: 8px 0;
+    margin: 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #746f6f;
+    color: #070707;
+    padding: 32px 24px 16px 24px;
+    flex-wrap: wrap;
+    gap: 32px;
+    max-width: 1200px;    
+    margin-left: auto;     
+    margin-right: auto;  
+}
+
+.text-footer {
+    flex: 1 1 250px;
+    min-width: 200px;
+    margin-right: 24px;
+}
+
+.text-footer h2 {
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+}
+
+.text-footer p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.media-footer {
+    flex: 1 1 180px;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.media-footer h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.media-footer a {
+    display: flex;
+    align-items: center;
+    color: #070707;
+    text-decoration: none;
+    font-size: 1rem;
+    gap: 8px;
+    transition: color 0.2s;
+}
+
+.media-footer a:hover {
+    color: #99F99C;
+}
+
+.social-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 4px; 
+}
+
+/* Add to your existing footer styles */
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-link {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.admin-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 700px) {
+    .footer-container {
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width: 581px) {
+
+    .media-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

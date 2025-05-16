@@ -1,0 +1,276 @@
+.product-card {
+  width: 240px; /* Increased from 220px to handle wider images */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  transition: all 0.2s ease;
+  gap: 4px;
+  border: 1px solid #e0e0e0;
+  height: 420px; /* Increased height for larger images */
+  position: relative; /* For absolute positioning if needed */
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-3px);
+}
+
+.product-image {
+  width: 180px; /* Increased from 120px */
+  height: 220px; /* Increased from 200px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  overflow: hidden; /* Prevent image overflow */
+  background-color: #f9f9f9; /* Light background for empty areas */
+  border-radius: 4px;
+}
+
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Maintain aspect ratio while fitting in container */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.product-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 8px 0 4px 0;
+  text-align: center;
+  color: #333;
+}
+
+.product-category {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2a8f2a;
+  margin-bottom: 8px;
+}
+
+.product-stock {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.product-card button {
+  background: #2a8f2a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0; /* Remove horizontal padding */
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 80%; /* Consistent width for all buttons */
+  margin: auto auto 0 auto; /* Push to bottom and center horizontally */
+  display: block; /* Ensure it takes the full width specified */
+  text-align: center; /* Center text inside button */
+}
+
+.product-card button:hover {
+  background: #217021;
+}
+
+.product-card button:disabled {
+  background: #cccccc;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+/* Adjust product info container to take full height */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  flex-grow: 1; /* Take remaining space */
+  justify-content: space-between; /* Space between content and button */
+}
+
+/* Product info content wrapper to push button to bottom */
+.product-info-content {
+  width: 100%;
+  text-align: center;
+}
+
+/* Ensure button container is at the bottom */
+.product-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto; /* Push to bottom */
+  padding-top: 10px; /* Add some space above button */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 28px;   
+  column-gap: 12px; 
+  max-width: 1200px;
+  margin: 0 auto;
+  
+}
+
+
+.product-grid-container {
+  background-color: #f8f9fa;
+  width: 100%;
+  padding: 40px 0;
+}
+
+
+.loading-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.loading-message::after {
+  content: "...";
+  animation: dots 1.5s infinite;
+  width: 24px;
+  text-align: left;
+}
+
+@keyframes dots {
+  0%, 20% { content: "."; }
+  40% { content: ".."; }
+  60%, 100% { content: "..."; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+    gap: 24px 16px;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 580px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    padding: 24px 16px;
+  }
+}
+
+/* Update media query for mobile (up to 600px) */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px; /* Increased gap between cards */
+    padding: 16px 12px; /* Reduced padding */
+    max-width: 100%;
+  }
+  
+  /* Smaller product cards for 2-column layout */
+  .product-card {
+    width: 100%; /* Full width of grid cell */
+    height: 300px; /* Further reduced height */
+    padding: 10px 8px; /* Smaller padding */
+    gap: 2px; /* Reduce gap between elements */
+    border-radius: 8px; /* Smaller border radius */
+  }
+  
+  /* Adjust image size */
+  .product-image {
+    width: 120px; /* Smaller image container */
+    height: 140px; /* Shorter height */
+    margin-bottom: 8px;
+  }
+  
+  /* Adjust text sizes */
+  .product-name {
+    font-size: 0.95rem;
+    margin: 6px 0 2px 0;
+  }
+  
+  .product-price {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+  
+  .product-stock {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .product-card button {
+    font-size: 0.85rem;
+    padding: 8px 0;
+  }
+}
+
+/* Very small screens (320px to 374px) */
+@media screen and (max-width: 374px) {
+  .product-grid {
+    gap: 10px; /* Even smaller gap for very small screens */
+    padding: 12px 8px;
+  }
+  
+  .product-card {
+    height: 280px; /* Further reduced height */
+    padding: 8px 5px; /* Even smaller padding */
+    border-radius: 6px;
+  }
+  
+  .product-image {
+    width: 110px; /* Even smaller image container */
+    height: 130px;
+    margin-bottom: 6px;
+  }
+  
+  .product-name {
+    font-size: 0.85rem;
+    margin: 4px 0 2px 0;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  
+  .product-stock {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+  
+  .product-card button {
+    font-size: 0.8rem;
+    padding: 7px 0;
+  }
+}
