@@ -69,9 +69,9 @@ const Cart = () => {
                       <span className="item-price">{getField(item, 'price')} :-</span>
                     </div>
                     <div className="item-controls">
-                      <button onClick={() => handleQuantity(item.id, -1)}>-</button>
-                      <span className="item-qty">{getField(item, 'quantity')}</span>
                       <button onClick={() => handleQuantity(item.id, 1)}>+</button>
+                      <span className="item-qty">{getField(item, 'quantity')}</span>
+                      <button onClick={() => handleQuantity(item.id, -1)}>-</button>
                       <button className="remove-button" onClick={() => removeFromCart(item.id)}>×</button>
                     </div>
                   </div>

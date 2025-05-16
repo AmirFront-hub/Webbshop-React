@@ -96,7 +96,6 @@
     display: flex;
     gap: 8px;
     align-items: center;
-    margin-bottom: 12px;
 }
 
 .item-controls button {
@@ -175,6 +174,19 @@
     justify-content: space-between;
     align-items: center;
     margin: 6px 0 6px 0;
+}
+
+.summary-item-row.ordersumma {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.summary-item-row.ordersumma strong {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #83ff87; /* Match your theme color */
 }
 
 .cart-title {
