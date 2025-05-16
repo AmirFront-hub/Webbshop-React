@@ -55,7 +55,7 @@ const AdminPanel = () => {
   };
   
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Basic validation
@@ -74,20 +74,26 @@ const AdminPanel = () => {
     };
     
     try {
+      setMessage({ text: 'Sparar...', type: 'info' });
+      
       if (editMode && editProductId) {
         // Update existing product
-        updateProduct({ ...productData, id: editProductId });
-        setMessage({ text: 'Produkt uppdaterad!', type: 'success' });
+        await updateProduct({ ...productData, id: editProductId });
+        setMessage({ text: 'Produkt uppdaterad i databasen!', type: 'success' });
       } else {
         // Add new product
-        addProduct(productData);
-        setMessage({ text: 'Produkt tillagd!', type: 'success' });
+        await addProduct(productData);
+        setMessage({ text: 'Produkt tillagd i databasen!', type: 'success' });
       }
       
       // Reset form
       resetForm();
     } catch (error) {
-      setMessage({ text: `Fel: ${error.message}`, type: 'error' });
+      console.error('Error saving product:', error);
+      setMessage({ 
+        text: `Ett fel uppstod: ${error.message}`, 
+        type: 'error' 
+      });
     }
   };
   
@@ -126,15 +132,23 @@ const AdminPanel = () => {
   };
   
   // Handle product deletion
-  const handleDelete = (productId) => {
-    if (window.confirm('Är du säker på att du vill ta bort denna produkt?')) {
-      deleteProduct(productId);
-      setMessage({ text: 'Produkt borttagen!', type: 'success' });
-      
-      // Clear message after 3 seconds
-      setTimeout(() => {
-        setMessage({ text: '', type: '' });
-      }, 3000);
+  const handleDelete = async (productId) => {
+    if (window.confirm('Är du säker på att du vill ta bort denna produkt? Den kommer tas bort från databasen.')) {
+      try {
+        setMessage({ text: 'Tar bort produkt...', type: 'info' });
+        await deleteProduct(productId);
+        setMessage({ text: 'Produkt borttagen från databasen!', type: 'success' });
+        
+        // Clear message after 3 seconds
+        setTimeout(() => {
+          setMessage({ text: '', type: '' });
+        }, 3000);
+      } catch (error) {
+        setMessage({ 
+          text: `Ett fel uppstod vid borttagning: ${error.message}`, 
+          type: 'error' 
+        });
+      }
     }
   };
   
