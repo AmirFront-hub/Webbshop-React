@@ -15,6 +15,8 @@ footer {
 }
 
 .copyright-content {
+    justify-content: center;
+    display: flex;
     padding: 8px 0;
     margin: 0;
     text-align: center;
@@ -93,18 +95,18 @@ footer {
   align-items: center;
   padding-top: 20px;
   margin-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(27, 27, 27, 0.1);
 }
 
 .admin-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s;
 }
 
 .admin-link:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(252, 160, 160, 0.8);
   text-decoration: underline;
 }
 
