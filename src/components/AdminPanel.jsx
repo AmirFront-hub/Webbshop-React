@@ -137,6 +137,7 @@ const AdminPanel = () => {
   
   // Load product data for editing
   const handleEdit = (product) => {
+    // First update the state
     setFormData({
       name: product.name || '',
       price: product.price?.toString() || '',
@@ -147,29 +148,28 @@ const AdminPanel = () => {
     setEditMode(true);
     setEditProductId(product.id);
     
-    // Enhanced scroll behavior
-    setTimeout(() => {
+    // Use requestAnimationFrame to ensure state has been updated before scrolling
+    requestAnimationFrame(() => {
       const formElement = document.querySelector('.product-form');
       if (formElement) {
-        // Scroll with offset to account for fixed headers if any
-        const yOffset = -80; // Adjust this value based on your header height
-        const y = formElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        // Calculate position including any fixed headers
+        const headerOffset = 100; // Adjust based on your header height
+        const elementPosition = formElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
         
+        // Perform the scroll
         window.scrollTo({
-          top: y,
+          top: offsetPosition,
           behavior: 'smooth'
         });
         
-        // Add a brief highlight effect to make it obvious
+        // Add highlight effect
         formElement.classList.add('highlight-form');
         setTimeout(() => {
           formElement.classList.remove('highlight-form');
-        }, 1000);
-      } else {
-        // Fallback if element not found
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1500);
       }
-    }, 100); // Small delay to ensure state is updated
+    });
   };
   
   // Handle product deletion

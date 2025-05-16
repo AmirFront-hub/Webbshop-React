@@ -240,9 +240,9 @@
 /* Add highlight animation for edited form */
 
 @keyframes highlightForm {
-  0% { background-color: #f8f9fa; }
-  50% { background-color: #e8f4ff; }
-  100% { background-color: #f8f9fa; }
+  0% { background-color: #f8f9fa; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
+  50% { background-color: #e2efff; box-shadow: 0 0 15px rgba(92, 149, 217, 0.5); }
+  100% { background-color: #f8f9fa; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); }
 }
 
 .highlight-form {
