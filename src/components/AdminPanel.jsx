@@ -266,42 +266,45 @@ const AdminPanel = () => {
       )}
       
       <form className="product-form" onSubmit={handleSubmit}>
+        {/* First row for Name and Price */}
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="name">Produktnamn*</label>
+            <label htmlFor="name">Produktnamn *</label>
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="T.ex. LEGO Star Wars"
+              required
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="price">Pris (kr)*</label>
+            <label htmlFor="price">Pris (kr) *</label>
             <input
-              type="text"
+              type="text" 
               id="price"
               name="price"
               value={formData.price}
               onChange={handleChange}
-              placeholder="T.ex. 299"
+              required
             />
           </div>
         </div>
         
+        {/* Second row for Category and Stock */}
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="category">Kategori*</label>
+            <label htmlFor="category">Kategori *</label>
             <select
               id="category"
               name="category"
               value={formData.category}
               onChange={handleChange}
+              required
             >
-              <option value="">Välj kategori</option>
+              <option value="" disabled>Välj kategori</option>
               {categories.map(category => (
                 <option key={category} value={category}>{category}</option>
               ))}
@@ -309,42 +312,44 @@ const AdminPanel = () => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="stock">Lagersaldo*</label>
+            <label htmlFor="stock">Lagersaldo *</label>
             <input
               type="text"
               id="stock"
               name="stock"
               value={formData.stock}
               onChange={handleChange}
-              placeholder="T.ex. 25"
+              required
             />
           </div>
         </div>
         
-        <div className="form-group">
-          <label htmlFor="imageURL">Bild URL</label>
-          <input
-            type="text"
-            id="imageURL"
-            name="imageURL"
-            value={formData.imageURL}
-            onChange={handleChange}
-            placeholder="https://exempel.se/bild.jpg"
-          />
+        {/* Third row for Image URL */}
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="imageURL">Bild URL</label>
+            <input
+              type="text"
+              id="imageURL"
+              name="imageURL"
+              value={formData.imageURL}
+              onChange={handleChange}
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
         </div>
         
         <div className="form-buttons">
           <button type="submit" className="btn-primary">
             {editMode ? 'Uppdatera produkt' : 'Lägg till produkt'}
           </button>
-          
           {editMode && (
             <button 
               type="button" 
               className="btn-secondary"
               onClick={resetForm}
             >
-              Avbryt
+              Avbryt redigering
             </button>
           )}
         </div>
