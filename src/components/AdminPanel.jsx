@@ -36,6 +36,20 @@ const AdminPanel = () => {
     fetchProducts();
   }, [fetchProducts]);
   
+  // Validate image URL (add to the AdminPanel component)
+  const isValidImageUrl = (url) => {
+    if (!url) return true; // Empty URL is valid, will use placeholder
+    
+    // Basic URL validation
+    try {
+      new URL(url);
+      // Check if it's likely an image URL
+      return url.match(/\.(jpeg|jpg|gif|png|webp)$/i) !== null;
+    } catch {
+      return false;
+    }
+  };
+  
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +75,12 @@ const AdminPanel = () => {
     // Basic validation
     if (!formData.name || !formData.price || !formData.category || !formData.stock) {
       setMessage({ text: 'Alla obligatoriska fält måste fyllas i', type: 'error' });
+      return;
+    }
+    
+    // Validate image URL if provided
+    if (formData.imageURL && !isValidImageUrl(formData.imageURL)) {
+      setMessage({ text: 'Ogiltig bild URL. Använd en länk till en jpg, png, gif eller webp-fil', type: 'error' });
       return;
     }
     
@@ -127,8 +147,29 @@ const AdminPanel = () => {
     setEditMode(true);
     setEditProductId(product.id);
     
-    // Scroll to form
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Enhanced scroll behavior
+    setTimeout(() => {
+      const formElement = document.querySelector('.product-form');
+      if (formElement) {
+        // Scroll with offset to account for fixed headers if any
+        const yOffset = -80; // Adjust this value based on your header height
+        const y = formElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        
+        window.scrollTo({
+          top: y,
+          behavior: 'smooth'
+        });
+        
+        // Add a brief highlight effect to make it obvious
+        formElement.classList.add('highlight-form');
+        setTimeout(() => {
+          formElement.classList.remove('highlight-form');
+        }, 1000);
+      } else {
+        // Fallback if element not found
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 100); // Small delay to ensure state is updated
   };
   
   // Handle product deletion
@@ -278,12 +319,18 @@ const AdminPanel = () => {
             {products.map(product => (
               <tr key={product.id}>
                 <td className="product-image-cell">
-                  {product.imageURL && (
+                  {product.imageURL ? (
                     <img 
                       src={product.imageURL} 
-                      alt={product.name} 
+                      alt={product.name}
                       className="product-thumbnail"
+                      onError={(e) => {
+                        e.target.onerror = null; // Prevent infinite error loop
+                        e.target.src = 'https://via.placeholder.com/50?text=No+Image'; // Fallback image
+                      }}
                     />
+                  ) : (
+                    <div className="no-image-placeholder">No Image</div>
                   )}
                 </td>
                 <td>{product.name}</td>
