@@ -80,7 +80,7 @@ const Login = () => {
         </form>
         
         <div className="login-info">
-          <p>För demo: använd "admin" som användarnamn och "admin123" som lösenord.</p>
+          <p></p>
         </div>
       </div>
     </div>
