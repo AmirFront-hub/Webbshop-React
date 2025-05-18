@@ -237,7 +237,6 @@
 /* Very small screens (320px to 374px) */
 @media screen and (max-width: 374px) {
   .product-grid {
-    gap: 10px; /* Even smaller gap for very small screens */
     padding: 12px 8px;
   }
   
@@ -271,5 +270,20 @@
   .product-card button {
     font-size: 0.8rem;
     padding: 7px 0;
+  }
+}
+
+/* Medium screens (901px to 1100px) - 2 columns instead of 3 */
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 740px; /* Adjusted max-width for 2 columns */
+    gap: 28px 20px; /* Slightly increased column gap */
+  }
+  
+  /* You can also adjust card size if needed */
+  .product-card { 
+    max-width: 340px; /* Optional: maximum width for cards */
+    margin: 0 auto; /* Center cards in their grid cells */
   }
 }
