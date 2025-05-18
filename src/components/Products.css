@@ -192,7 +192,6 @@
 @media (max-width: 600px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px; /* Increased gap between cards */
     padding: 16px 12px; /* Reduced padding */
     max-width: 100%;
   }
